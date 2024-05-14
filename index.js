@@ -28,6 +28,15 @@ const run = async () => {
             albumKey = 'The Eminem Show - Eminem'
         }
 
+        if (row['Album'].startsWith('Love Sux')) {
+            albumKey = 'Love Sux - Avril Lavigne'
+        }
+
+        if (row['Album'].toLowerCase().startsWith('single and famous')) {
+            albumKey = 'Single And Famous - MC Lars & K.Flay'
+            artistKey = 'MC Lars & K.Flay'
+        }
+
         // this was reported as Goldfinger and Biffy Clyro?
         if (row['Album'].startsWith('Never Look Back (Deluxe)')) {
             albumKey = 'Never Look Back (Deluxe) - Goldfinger'
