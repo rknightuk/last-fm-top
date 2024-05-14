@@ -5,3 +5,5 @@
 3. Run `npm install`
 4. Then run `node index.js` and the script will output two files - `albums.txt` and `artists.txt`
 5. You can optionally pass a limit if you want more than 50 entries like so `node index.js 100`
+
+This also has some checks in it to clean up some albums and artists that were reported wrong, or the artist changed (like Hamilton).

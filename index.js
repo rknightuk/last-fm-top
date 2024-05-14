@@ -12,17 +12,43 @@ const run = async () => {
     }
 
     rawData.forEach(row => {
-        if (!raw.artists[row['Artist']]) {
-            raw.artists[row['Artist']] = 0
+        let artistKey = row['Artist']
+
+        let albumKey = `${row['Album']} - ${row['Artist']}`
+        if (row['Album'].startsWith('Hamilton: An American Musical')) {
+            albumKey = 'Hamilton: An American Musical - Original Broadway Cast'
+            artistKey = 'Original Broadway Cast of Hamilton'
         }
 
-        raw.artists[row['Artist']]++
-
-        if (!raw.albums[`${row['Album']} - ${row['Artist']}`]) {
-            raw.albums[`${row['Album']} - ${row['Artist']}`] = 0
+        if (row['Album'].startsWith('Meteora')) {
+            albumKey = 'Meteora - Linkin Park'
         }
 
-        raw.albums[`${row['Album']} - ${row['Artist']}`]++
+        if (row['Album'].startsWith('The Eminem Show')) {
+            albumKey = 'The Eminem Show - Eminem'
+        }
+
+        // this was reported as Goldfinger and Biffy Clyro?
+        if (row['Album'].startsWith('Never Look Back (Deluxe)')) {
+            albumKey = 'Never Look Back (Deluxe) - Goldfinger'
+            artistKey = 'Goldfinger'
+        }
+
+        if (row['Album'].startsWith('Hybrid Theory')) {
+            albumKey = 'Hybrid Theory - Linkin Park'
+        }
+
+        if (!raw.artists[artistKey]) {
+            raw.artists[artistKey] = 0
+        }
+
+        raw.artists[artistKey]++
+
+        if (!raw.albums[albumKey]) {
+            raw.albums[albumKey] = 0
+        }
+
+        raw.albums[albumKey]++
     });
 
     const data = {
